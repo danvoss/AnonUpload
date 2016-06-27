@@ -11,5 +11,6 @@ import java.util.List;
 public interface AnonFileRepository extends CrudRepository<AnonFile, Integer> {
     List<AnonFile> findByOrderByIdDesc();
     public AnonFile findFirstByIsPermanentFalseOrderByIdAsc();
+    public AnonFile findByComments(String comments);
 
 }

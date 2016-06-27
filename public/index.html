@@ -4,10 +4,18 @@
     <input type="file"  name="file"/>
     <input type="text" name="comments" placeholder="Comments"/>
     <input type="checkbox" name="makePermanent" value="true"/>Make upload permanent.
+    <input type="password" name="password" placeholder="Optional deletion password"/>
     <button type="submit">Upload</button>
 </form>
-<div id="list"></div>
+<div id="list">
+</div>
 <script src="jquery-3.0.0.js"></script>
 <script src="main.js"></script>
+<br><br>
+<form action="/delete" method="post">
+    <input type="text" name="fileName" placeholder="File Name"/>
+    <input type="password" name="password" placeholder="Deletion Password"/>
+    <button type="submit">Delete File</button>
+</form>
 </body>
 </html>
