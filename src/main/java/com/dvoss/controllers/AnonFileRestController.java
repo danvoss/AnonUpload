@@ -17,6 +17,6 @@ public class AnonFileRestController {
 
     @RequestMapping(path = "/files", method = RequestMethod.GET)
     public Iterable<AnonFile> getFiles() {
-        return files.findAll();
+        return files.findByOrderByIdDesc();
     }
 }

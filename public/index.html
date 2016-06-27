@@ -2,6 +2,8 @@
 <body>
 <form action="/upload" method="post" enctype="multipart/form-data">
     <input type="file"  name="file"/>
+    <input type="text" name="comments" placeholder="Comments"/>
+    <input type="checkbox" name="makePermanent" value="permanent"/>Make upload permanent.
     <button type="submit">Upload</button>
 </form>
 <div id="list"></div>
