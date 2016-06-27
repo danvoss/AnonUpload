@@ -21,7 +21,7 @@ public class AnonFile {
     @Column(nullable = false)
     String comments;
 
-    @Transient
+    @Column(nullable = false)
     boolean isPermanent;
 
     public AnonFile() {

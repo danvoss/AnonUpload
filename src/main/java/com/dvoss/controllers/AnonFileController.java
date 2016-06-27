@@ -30,7 +30,7 @@ public class AnonFileController {
     }
 
     @RequestMapping(path = "/upload", method = RequestMethod.POST)
-    public String upload(MultipartFile file, String comments, boolean permanent) throws IOException {
+    public String upload(MultipartFile file, String comments, boolean makePermanent) throws IOException {
         File dir = new File("public/files");
         dir.mkdirs();
 
@@ -38,15 +38,16 @@ public class AnonFileController {
         FileOutputStream fos = new FileOutputStream(uploadedFile);
         fos.write(file.getBytes());
 
-        AnonFile anonFile = new AnonFile(file.getOriginalFilename(), uploadedFile.getName(), comments, permanent);
-
-
+        AnonFile anonFile = new AnonFile(file.getOriginalFilename(), uploadedFile.getName(), comments, makePermanent);
 
         if (files.count() <= 9) {
             files.save(anonFile);
         }
+        else if (anonFile.isPermanent()) {
+            files.save(anonFile);
+        }
         else {
-            files.delete(files.findFirstByOrderByIdAsc());
+            files.delete(files.findFirstByIsPermanentFalseOrderByIdAsc());
             files.save(anonFile);
         }
         return "redirect:/";
