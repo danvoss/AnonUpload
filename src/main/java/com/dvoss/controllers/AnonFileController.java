@@ -49,6 +49,9 @@ public class AnonFileController {
             files.save(anonFile);
         }
         else {
+            AnonFile fileInDb = files.findFirstByIsPermanentFalseOrderByIdAsc();
+            File fileOnDisk = new File(dir, fileInDb.getRealFilename());
+            fileOnDisk.delete();
             files.delete(files.findFirstByIsPermanentFalseOrderByIdAsc());
             files.save(anonFile);
         }
@@ -66,6 +69,8 @@ public class AnonFileController {
         }
         else {
             files.delete(af);
+            File fileOnDisk = new File("public/files/" + af.getRealFilename());
+            fileOnDisk.delete();
         }
         return "redirect:/";
     }
