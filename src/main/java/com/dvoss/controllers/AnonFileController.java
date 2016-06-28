@@ -61,6 +61,9 @@ public class AnonFileController {
         if (!PasswordStorage.verifyPassword(password, af.getPassword())) {
             throw new Exception("Wrong password");
         }
+        else if (password == null) {
+            throw new Exception("Password not sent.");
+        }
         else {
             files.delete(af);
         }
